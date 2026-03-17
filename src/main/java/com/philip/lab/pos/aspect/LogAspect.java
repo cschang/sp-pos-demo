@@ -19,10 +19,7 @@ import java.util.Arrays;
 public class LogAspect {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-//    同步寫法
-//    @Autowired
-//    private SysLogMapper sysLogMapper;
-    // 非同步
+
     @Autowired
     private LogService logService;
 
