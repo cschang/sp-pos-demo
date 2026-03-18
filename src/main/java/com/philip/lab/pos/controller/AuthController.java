@@ -19,7 +19,6 @@ public class AuthController {
     public Result<Map<String, String>> login(@RequestBody Map<String, String> loginRequest) {
         String username = loginRequest.get("username");
         String password = loginRequest.get("password");
-
         String token = userService.login(username, password);
         
         if (token != null) {
@@ -32,7 +31,6 @@ public class AuthController {
     }
     @PostMapping("/register")
     public Result<String> register(@RequestBody User user) {
-        // 基本檢核
         if (user.getUsername() == null || user.getPassword() == null) {
             return Result.error(400, "帳號或密碼不能為空");
         }

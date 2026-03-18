@@ -57,11 +57,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return baseMapper.selectUserWithStore(id);
     }
 
-    public String login(String username, String password) {
+    public String login(String username, String rawPassword) {
         User user = this.getOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
 
-        if (user != null && user.getPassword().equals(password)) {
-            return jwtUtils.generateToken(username);
+        if (user != null) {
+            // 使用 matches 方法比對：(明文, 資料庫加密後的密碼)
+            if (passwordEncoder.matches(rawPassword, user.getPassword())) {
+                return jwtUtils.generateToken(username);
+            }
         }
         return null;
     }

@@ -25,12 +25,4 @@ public class UserController {
     public Result<List<User>> getAllUsers() {
         return Result.success(userService.list());
     }
-
-    @PostMapping("/register")
-    public Result<String> register(@RequestBody User user) {
-        if (user.getUsername() == null || user.getPassword() == null) {
-            return Result.error(400, "帳號或密碼不能為空");
-        }
-        return userService.register(user);
-    }
 }

@@ -11,7 +11,7 @@ spring:
       primary: master
       datasource:
         master:
-          url: jdbc:sqlite:db.sqlite3
+          url: jdbc:sqlite:db-java.sqlite3
           driver-class-name: org.sqlite.JDBC
   thymeleaf:
     cache: false
